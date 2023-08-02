@@ -4,7 +4,7 @@ print("Welcome my game PIG")
 def roll():
     min_value = 1
     max_value = 6
-    roll = random.randint(min_value,max_value)
+    roll = random.randint(min_value, max_value)
     return roll
 
 while True:
@@ -29,17 +29,20 @@ while max(player_scores) < max_score:
 
         while True:
             should_roll = input("Would you like to roll? (y / n) ")
-            if should_roll.lower() != "y":
+            if should_roll.lower() == "n":
                 break
-            value = roll()
-            if value == 1:
-                print("You rolled a 1! Turn done!")
-                current_score = 0
-                break
+            elif should_roll.lower() == "y":
+                value = roll()
+                if value == 1:
+                    print("You rolled a 1! Turn done!")
+                    current_score = 0
+                    break
+                else:
+                    current_score += value
+                    print("You rolled:", value)
+                print("You score is:", current_score)
             else:
-                current_score += value
-                print("You rolled:", value)
-            print("You score is:", current_score)
+                print("Please enter 'y' or 'n'")
         player_scores[player_idx] += current_score
         print("You total score is:", player_scores[player_idx])
 max_score = max(player_scores)
